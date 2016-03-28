@@ -1,0 +1,12 @@
+django<1.9
+django-filter
+djangorestframework==3.3.1
+django-rest-swagger
+django-extensions
+wheel
+pydot
+netaddr
+django-cors-headers
+djangorestframework-filters
+django-debug-toolbar
+gunicorn

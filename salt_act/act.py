@@ -3,7 +3,7 @@ __author__ = 'jinhongjun'
 from salt_api.models import Minion,Master,Log,Module
 import json
 import re
-from api import SSH_result,Salt_http,get_result
+from api import Salt_http,get_result
 def log_all(func):
     '''decorate func to get log'''
     def handle(host,module_name,arg):
@@ -68,17 +68,17 @@ def exec_cmd_salt_http(master,host_name,salt_name,arg):
     result=Salt_http().post(master_ip,master_port,master_token,'/cmd',send_data)
     return result
 
-def exec_cmd_salt_ssh(master,host_name,salt_name,arg):
-    '''exec salt command by ssh'''
-    master_ip=master.ip
-    cmd='salt %s %s ' %(host_name,salt_name)
-    if arg:
-        arg=' '.join(arg)
-        cmd=cmd+arg+' --out=json'
-    else:
-        cmd=cmd+'--out=json'
-    result=SSH_result(master_ip).get(host_name,cmd)
-    return result
+# def exec_cmd_salt_ssh(master,host_name,salt_name,arg):
+#     '''exec salt command by ssh'''
+#     master_ip=master.ip
+#     cmd='salt %s %s ' %(host_name,salt_name)
+#     if arg:
+#         arg=' '.join(arg)
+#         cmd=cmd+arg+' --out=json'
+#     else:
+#         cmd=cmd+'--out=json'
+#     result=SSH_result(master_ip).get(host_name,cmd)
+#     return result
 
 def salt_key():
     Master_all=Master.objects.all()
